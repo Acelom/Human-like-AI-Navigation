@@ -1,0 +1,22 @@
+UI Icons from:
+
+<a href="https://www.flaticon.com/free-icons/wall" title="wall icons">Wall icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/door" title="door icons">Door icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/shelf" title="shelf icons">Shelf icons created by surang - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/chair" title="chair icons">Chair icons created by ultimatearm - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/business-and-finance" title="business and finance icons">Business and finance icons created by syafii5758 - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/trash" title="trash icons">Trash icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/coin" title="coin icons">Coin icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/menu" title="menu icons">Menu icons created by Icongeek26 - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/cabbage" title="cabbage icons">Cabbage icons created by Pixel perfect - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/can" title="can icons">Can icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/bread" title="bread icons">Bread icons created by Freepik - Flaticon</a>
+
+Models from: 
+https://assetstore.unity.com/packages/3d/dragon-statue-59053
+https://assetstore.unity.com/packages/3d/props/exterior/lion-statue-34247
+
+Other materials from:
+3DTEXTURES.me
+
+Everything else is my own work.

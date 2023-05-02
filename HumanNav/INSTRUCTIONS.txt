@@ -1,0 +1,5 @@
+WASDQE keys move the camera. 
+Hold the middle mouse button to rotate the camera. 
+Press the right mouse button to cancel or back out of menus. 
+Left click on any of the tabs and then an item in the menu that appears to place objects. 
+To spawn AI agents, place the "End" item first, then the agents will spawn when the "Start" item is placed. 
