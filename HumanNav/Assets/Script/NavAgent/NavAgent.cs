@@ -129,12 +129,17 @@ public class NavAgent : MonoBehaviour
 
     private void CheckSubdestination()
     {
+        Vector2 pos2 = new Vector2(transform.position.x, transform.position.z);
+        Vector2 forward2 = new Vector2(transform.forward.x, transform.forward.z); 
+
 
         for (int i = 0; i < nav.cellCount.x; i++)
         {
             for (int j = 0; j < nav.cellCount.y; j++)
             {
-                finalWeights[i, j].weight = memory[i, j].weight * weightsBeforeMemory[i, j].weight * alreadyVisited[i, j].weight;
+                finalWeights[i, j].weight = memory[i, j].weight * weightsBeforeMemory[i, j].weight * alreadyVisited[i, j].weight * 
+                    Mathf.Clamp(Mathf.Cos(4 * Vector2.Angle(forward2, finalWeights[i, j].position - pos2) * Mathf.Deg2Rad), 0.5f, 1f) *
+                      Mathf.Clamp(Mathf.Cos(Vector2.Angle(forward2, finalWeights[i, j].position - pos2) * Mathf.Deg2Rad), 0.5f, 1f) ;
             }
         }
 
