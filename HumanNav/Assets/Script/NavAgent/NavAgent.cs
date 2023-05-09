@@ -66,8 +66,8 @@ public class NavAgent : MonoBehaviour
                 alreadyVisited[i, j].weight = 100;
             }
         }
-        destinationFound = false; 
-
+        destinationFound = false;
+        destinationCell = nav.ClosestCellToPosition(new Vector2(destination.transform.position.x, destination.transform.position.z)); 
         subDestinationCell = dummyCell;
         subDestination = Vector2.positiveInfinity;
 
