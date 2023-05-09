@@ -3,3 +3,5 @@ Hold the middle mouse button to rotate the camera.
 Press the right mouse button to cancel or back out of menus. 
 Left click on any of the tabs and then an item in the menu that appears to place objects. 
 To spawn AI agents, place the "End" item first, then the agents will spawn when the "Start" item is placed. 
+(SOURCE FILES ONLY, NOT AVAILABLE ON THE BUILD) To change the grid cell size, before entering play mode select the GameController object in hierarchy. 
+then change the cell size quality on the drop down menu under the script NavAgentManager. 
