@@ -3127,7 +3127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floor: {fileID: 0}
   obstacleUpdatePeriod: 0.1
-  cellSizeQuality: 3
+  cellSizeQuality: 0
   cellSize: {x: 0, y: 0}
   cellCount: {x: 0, y: 0}
 --- !u!1 &372040990
