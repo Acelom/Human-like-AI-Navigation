@@ -177,6 +177,8 @@ public class NavAgent : MonoBehaviour
         agent.SetPath(path);
     }
 
+
+    // from https://forum.unity.com/threads/random-numbers-with-a-weighted-chance.442190/, from user AndyGainey 
     public int GetRandomWeightedIndex(int[] weights)
     {
 
