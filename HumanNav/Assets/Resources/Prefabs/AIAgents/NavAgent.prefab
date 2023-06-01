@@ -138,7 +138,7 @@ MonoBehaviour:
   destination: {fileID: 0}
   startPos: {x: 0, y: 0, z: 0}
   memoryUpdatePeriod: 0.5
-  visionAngle: 25
+  visionAngle: 45
   visionDistance: 30
 --- !u!1 &2100678486220873072
 GameObject:

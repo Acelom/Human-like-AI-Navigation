@@ -20,17 +20,20 @@ public class NavAgent : MonoBehaviour
     private Cell destinationCell;
     private bool destinationFound;
     private Cell dummyCell;
-    public Vector3 startPos; 
+    public Vector3 startPos;
+    private bool checkingArea; 
 
     [SerializeField] private float memoryUpdatePeriod;
     [SerializeField] private float visionAngle;
     [SerializeField] private float visionDistance;
+    private float defaultVisionAngle; 
 
     private Vector2 subDestination;
     private Cell subDestinationCell;
 
     private void Start()
     {
+        defaultVisionAngle = visionAngle; 
         startPos = transform.position; 
         subDestinationCell = dummyCell = new Cell(new Vector2(-Mathf.Infinity, -Mathf.Infinity), -100, new Vector2Int(-100, -100));
         nav = GameObject.FindObjectOfType<NavAgentManager>();
@@ -66,8 +69,8 @@ public class NavAgent : MonoBehaviour
                 alreadyVisited[i, j].weight = 100;
             }
         }
-        destinationFound = false;
-        destinationCell = nav.ClosestCellToPosition(new Vector2(destination.transform.position.x, destination.transform.position.z)); 
+        destinationFound = false; 
+
         subDestinationCell = dummyCell;
         subDestination = Vector2.positiveInfinity;
 
@@ -75,6 +78,11 @@ public class NavAgent : MonoBehaviour
 
     IEnumerator UpdateMemory()
     {
+        if (checkingArea)
+        {
+            visionAngle = 180; 
+        }
+
         StartCoroutine(SetUpWeights());
 
         for (int i = 0; i < nav.cellCount.x; i++)
@@ -104,11 +112,17 @@ public class NavAgent : MonoBehaviour
             }
         }
 
-        if (!destinationFound)
+
+        if (!destinationFound && !checkingArea)
         {
-           CheckSubdestination();
+            CheckSubdestination();
         }
+
+        visionAngle = defaultVisionAngle;
+        checkingArea = false;
+
         yield return new WaitForSeconds(memoryUpdatePeriod);
+
         StartCoroutine(UpdateMemory());
     }
 
@@ -129,17 +143,12 @@ public class NavAgent : MonoBehaviour
 
     private void CheckSubdestination()
     {
-        Vector2 pos2 = new Vector2(transform.position.x, transform.position.z);
-        Vector2 forward2 = new Vector2(transform.forward.x, transform.forward.z); 
-
 
         for (int i = 0; i < nav.cellCount.x; i++)
         {
             for (int j = 0; j < nav.cellCount.y; j++)
             {
-                finalWeights[i, j].weight = memory[i, j].weight * weightsBeforeMemory[i, j].weight * alreadyVisited[i, j].weight * 
-                    Mathf.Clamp(Mathf.Cos(4 * Vector2.Angle(forward2, finalWeights[i, j].position - pos2) * Mathf.Deg2Rad), 0.5f, 1f) *
-                      Mathf.Clamp(Mathf.Cos(Vector2.Angle(forward2, finalWeights[i, j].position - pos2) * Mathf.Deg2Rad), 0.5f, 1f) ;
+                finalWeights[i, j].weight = memory[i, j].weight * weightsBeforeMemory[i, j].weight * alreadyVisited[i, j].weight;
             }
         }
 
@@ -158,13 +167,23 @@ public class NavAgent : MonoBehaviour
             SetSubdestination();
 
         }
-        if (averageWeight > finalWeights[subDestinationCell.cellPos.x, subDestinationCell.cellPos.y].weight || agent.remainingDistance < 1)
+        if ((averageWeight > finalWeights[subDestinationCell.cellPos.x, subDestinationCell.cellPos.y].weight || agent.remainingDistance < 1) && !checkingArea)
         {
-            SetSubdestination();
+            checkingArea = true;
+            StartCoroutine(CheckArea());
         }
 
     }
-
+    
+    private IEnumerator CheckArea()
+    {
+        while (checkingArea)
+        {
+            yield return null;
+        }
+        SetSubdestination(); 
+        yield break; 
+    }
 
     private void SetSubdestination()
     {
@@ -177,8 +196,6 @@ public class NavAgent : MonoBehaviour
         agent.SetPath(path);
     }
 
-
-    // from https://forum.unity.com/threads/random-numbers-with-a-weighted-chance.442190/, from user AndyGainey 
     public int GetRandomWeightedIndex(int[] weights)
     {
 

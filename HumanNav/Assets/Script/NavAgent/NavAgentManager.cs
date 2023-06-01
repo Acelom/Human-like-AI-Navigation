@@ -166,7 +166,7 @@ namespace NavManager
             this.center = new Vector2(obj.transform.position.x, obj.transform.position.z);
             this.rotation = Mathf.Repeat(obj.transform.eulerAngles.y, 360) - 180;
             this.length = obj.transform.localScale.z;
-            this.range = Mathf.RoundToInt(range + Mathf.RoundToInt(obj.transform.localScale.x) / nav.cellSize.x);
+            this.range = range + Mathf.RoundToInt(obj.transform.localScale.x);
             Cell temp = nav.ClosestCellToPosition(this.center);
             this.cellPos = new Vector2Int(temp.cellPos.x, temp.cellPos.y);
         }
@@ -430,8 +430,6 @@ namespace NavManager
 
         public Cell[,] CreepingWave(Vector2 position, int weightStartValue, int weightDecreaseValue, bool goThroughObstacles)
         {
-
-            weightStartValue = Mathf.RoundToInt( weightStartValue / cellSize.x); 
             Cell[,] wave = new Cell[cellCount.x, cellCount.y];
             wave = NewCellArray();
 
